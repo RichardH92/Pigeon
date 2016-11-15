@@ -1,14 +1,17 @@
 package main
 
 import (
-	"pigeon/user_API"
-	"pigeon/utilities"
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/urfave/negroni"
+	"github.com/zbindenren/negroni-prometheus"
 	"log"
 	"net/http"
 	"os"
+	"pigeon/user_API"
+	"pigeon/utilities"
 )
 
 type Configuration struct {
@@ -34,7 +37,14 @@ func main() {
 
 	r := mux.NewRouter()
 
+	r.Handle("/metrics", prometheus.Handler())
 	r.HandleFunc("/email", user_API.HandleGetSendEmail).Methods("GET")
 
-	log.Fatal(http.ListenAndServe(configuration.Port, r))
+	n := negroni.New()
+	n.Use(negroni.NewLogger())
+	n.Use(negroni.NewRecovery())
+	n.Use(negroniprometheus.NewMiddleware("Pigeon"))
+	n.UseHandler(r)
+
+	log.Fatal(http.ListenAndServe(configuration.Port, n))
 }
