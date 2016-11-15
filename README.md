@@ -1,14 +1,11 @@
 ## Synopsis
 
-Pigeon is a microservice for sending templated emails via a REST api. It runs on AWS and utilizes SES.
+Pigeon is a microservice for sending template emails via a REST api. It runs on AWS and utilizes SES.
 
-## Code Example
-
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
 
 ## Motivation
 
-Pigeon allows users to swap html templates without changing backend code. It allows other services to send a templated, automated email with a simple REST query.
+Pigeon allows users to swap html templates without changing backend code. It allows other services to send a template, automated email with a simple REST query.
 
 ## Installation
 
@@ -20,9 +17,54 @@ docker run -p 8081:8081 -v <your cloned directory>:/go --name=Pigeon Pigeon
 
 ## API Reference
 
-Pigeon's API is dynamically created from the configuration settings.  
+**Email**
+----  
 
-For example,i for the following configuration settings
+* **URL**
+
+  /email
+
+* **Method:**
+
+  `GET`
+
+*  **URL Params**
+
+   **Required:**
+
+   `type=[string]`  
+	 `dest=[string]`
+
+   **Optional:**
+
+   Optional parameters are specified in the "Query_Vals" section(s) of the conf.json file
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+
+
+* **Error Response:**
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `"Invalid value for query parameter <parameter>"`
+
+  OR
+
+  * **Code:** 501 INTERNAL SERVER ERROR <br />
+    **Content:** `"Error opening file <name>"`
+
+
+* **Sample Queries For Configuration Settings:**  
+
+	* Sample Queries <br />
+
+		`wget "localhost:8081/email?type=Example_Email_1&aaa=123&bbb=456&dest=dest@test.com"`  
+		`wget "localhost:8081/email?type=Example_Email_2&dest=dest@test.com"`
+
+	* Config Settings
+
+
 ```json
 {
 	"Port" : ":8081",
@@ -45,19 +87,20 @@ For example,i for the following configuration settings
 }
 ```
 
-Pigeon will generate the following API endpoints  
-```
-Test
-```
+
+
+* **Notes:**
+
+	* Pigeon also exports Prometheus metrics on the "/metrics" endpoint
 
 
 ## Tests
 
-Describe and show how to run the tests with code examples.
+`go test -v`
 
 ## Contributors
 
-Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
+To contribute, please submit a pull-request. Thanks!
 
 ## License
 
