@@ -47,3 +47,31 @@ func TestValidateEmailTypeSucceeds(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func TestValidateEmailTypeReturnsCorrectly(t *testing.T) {
+	eType := Email_Type{
+		Type_Name:      "Test",
+		HTML_File_Name: "Test.html",
+		Query_Vals:     []string{"test1", "test2"},
+		Subject:        "TestSubj",
+	}
+	emailQueries := []Email_Type{eType}
+	SetEmailQueries(emailQueries)
+
+	ret, _ := ValidateEmailType("Test")
+	if ret.HTML_File_Name != "Test.html" {
+		t.Fail()
+	}
+	if ret.Subject != "TestSubj" {
+		t.Fail()
+	}
+	if len(ret.Query_Vals) != 2 {
+		t.Fail()
+	}
+	if ret.Query_Vals[0] != "test1" {
+		t.Fail()
+	}
+	if ret.Query_Vals[1] != "test2" {
+		t.Fail()
+	}
+}
