@@ -4,6 +4,7 @@ go:
     - 1.7
 
 before_install:
+    - cd /src/Pigeon
     - go get -t -v ./...
 
 script:
