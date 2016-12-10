@@ -4,8 +4,12 @@ go:
     - 1.7
 
 before_install:
-    - cd $TRAVIS_BUILD_DIR/src/Pigeon
-    - go get -t -v ./...
+    - go get github.com/gorilla/mux
+    - go get github.com/prometheus/client_golang
+    - go get github.com/urfave/negroni
+    - go get github.com/zbindenren/negroni-prometheus
+    - go get github.com/jmespath/go-jmespath
+    - go get github.com/aws/aws-sdk-go/aws
 
 script:
     - go test -race -coverprofile=coverage.txt -covermode=atomic ./...
