@@ -4,7 +4,7 @@ go:
     - 1.7
 
 before_install:
-    - cd /src/Pigeon
+    - cd $TRAVIS_BUILD_DIR/src/Pigeon
     - go get -t -v ./...
 
 script:
