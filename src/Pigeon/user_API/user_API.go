@@ -3,7 +3,7 @@ package user_API
 import (
 	"net/http"
 	//"log"
-	"pigeon/utilities"
+	"Pigeon/utilities"
 )
 
 type Email_Type struct {

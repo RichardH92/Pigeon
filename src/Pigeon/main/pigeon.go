@@ -10,8 +10,8 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"pigeon/user_API"
-	"pigeon/utilities"
+	"Pigeon/user_API"
+	"Pigeon/utilities"
 )
 
 type Configuration struct {
