@@ -1,11 +1,11 @@
-package user_API
+package main
 
 import (
 	"container/list"
 )
 
 type ErrorMessage struct {
-	Code int
+	Code     int
 	Messages *list.List
 }
 

@@ -1,4 +1,4 @@
-package aws
+package main
 
 import (
 	"fmt"
@@ -10,15 +10,15 @@ import (
 var source_addr string
 var region string
 
-func SetSourceAddr(source string) {
-	source_addr = source
+func SetSourceAddr(addr string) {
+	source_addr = addr
 }
 
 func SetRegion(reg string) {
 	region = reg
 }
 
-func SendEmail(to []string, html string, subj string) {
+func AwsSendEmail(to []string, html string, subj string) {
 	sess, err := session.NewSession()
 	if err != nil {
 		fmt.Println("failed to create session,", err)

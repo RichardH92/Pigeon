@@ -1,18 +1,18 @@
-package utilities
+package main
 
 import (
-  "strings"
-  "io/ioutil"
+	"io/ioutil"
+	"strings"
 )
 
 func GetFormattedHTMLFromFile(replacementMap map[string]string, name string) (bool, string) {
-  dat, err := ioutil.ReadFile("emails/" + name)
+	dat, err := ioutil.ReadFile("emails/" + name)
 	if err != nil {
-    return false, ""
+		return false, ""
 	}
 
-  temp := insertQueryValues(string(dat), replacementMap)
-  return true, formatHTML(temp)
+	temp := insertQueryValues(string(dat), replacementMap)
+	return true, formatHTML(temp)
 }
 
 func formatHTML(email string) string {

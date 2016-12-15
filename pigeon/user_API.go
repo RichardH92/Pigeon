@@ -1,9 +1,8 @@
-package user_API
+package main
 
 import (
 	"net/http"
 	//"log"
-	"Pigeon/utilities"
 )
 
 type Email_Type struct {
@@ -40,12 +39,12 @@ func HandleGetSendEmail(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	cont, html := utilities.GetFormattedHTMLFromFile(m, emailType.HTML_File_Name)
+	cont, html := GetFormattedHTMLFromFile(m, emailType.HTML_File_Name)
 	if !cont {
 		sendErrResponse(w, GetFileOpeningErrorMessage(emailType.HTML_File_Name))
 	}
 
-	utilities.SendEmail(dests, html, emailType.Subject)
+	AwsSendEmail(dests, html, emailType.Subject)
 
 }
 

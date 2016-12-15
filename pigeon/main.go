@@ -1,8 +1,6 @@
 package main
 
 import (
-	"Pigeon/user_API"
-	"Pigeon/utilities"
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
@@ -16,7 +14,7 @@ import (
 
 type Configuration struct {
 	Port         string
-	Emails       []user_API.Email_Type
+	Emails       []Email_Type
 	Source_Email string
 	Region       string
 }
@@ -31,14 +29,14 @@ func main() {
 		fmt.Println("error:", err)
 	}
 
-	user_API.SetEmailQueries(configuration.Emails)
-	utilities.SetSourceAddr(configuration.Source_Email)
-	utilities.SetRegion(configuration.Region)
+	SetEmailQueries(configuration.Emails)
+	SetSourceAddr(configuration.Source_Email)
+	SetRegion(configuration.Region)
 
 	r := mux.NewRouter()
 
 	r.Handle("/metrics", prometheus.Handler())
-	r.HandleFunc("/email", user_API.HandleGetSendEmail).Methods("GET")
+	r.HandleFunc("/email", HandleGetSendEmail).Methods("GET")
 
 	n := negroni.New()
 	n.Use(negroni.NewLogger())

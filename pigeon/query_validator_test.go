@@ -1,4 +1,4 @@
-package user_API
+package main
 
 import (
 	"testing"
