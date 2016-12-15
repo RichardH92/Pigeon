@@ -4,9 +4,11 @@ EXPOSE 8081
 
 ENV GOPATH=/go
 
-CMD go get github.com/gorilla/mux
-CMD go get github.com/aws/aws-sdk-go/aws
-CMD go get github.com/jmespath/go-jmespath
+RUN cd $GOPATH/src
+RUN git clone https://github.com/RichardH92/Pigeon.git
+RUN cd Pigeon
+RUN go get -t -v ./...
+RUN go install ./main/...
 
-ENTRYPOINT ["/go/setup.sh"]
+ENTRYPOINT [$GOPATH/bin/main]
 
