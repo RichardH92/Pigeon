@@ -3,14 +3,14 @@ package user_API
 import (
 	"net/http"
 	//"log"
-	"Pigeon/utilities"
+	"utilities"
 )
 
 type Email_Type struct {
 	Type_Name      string
 	HTML_File_Name string
 	Query_Vals     []string
-	Subject string
+	Subject        string
 }
 
 func HandleGetSendEmail(w http.ResponseWriter, req *http.Request) {
@@ -20,7 +20,7 @@ func HandleGetSendEmail(w http.ResponseWriter, req *http.Request) {
 	}
 
 	dests, cont := ValidateDestQuery(req.Form.Get("dest"))
-	if (!cont) {
+	if !cont {
 		sendErrResponse(w, GetInvalidQueryParameterMessage("dest"))
 		return
 	}
@@ -28,7 +28,7 @@ func HandleGetSendEmail(w http.ResponseWriter, req *http.Request) {
 	//TODO: Validate email addresses here
 
 	emailType, cont := ValidateEmailType(req.Form.Get("type"))
-	if (!cont) {
+	if !cont {
 		sendErrResponse(w, GetInvalidQueryParameterMessage("type"))
 		return
 	}

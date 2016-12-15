@@ -1,7 +1,7 @@
 package utilities
 
 import (
-  "Pigeon/infrastructure/aws"
+	"infrastructure/aws"
 )
 
 var source_addr string
@@ -15,5 +15,5 @@ func SetRegion(reg string) {
 	aws.SetRegion(reg)
 }
 func SendEmail(to []string, html string, subj string) {
-  aws.SendEmail(to, html, subj)
+	aws.SendEmail(to, html, subj)
 }
