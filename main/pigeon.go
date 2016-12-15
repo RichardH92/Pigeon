@@ -1,6 +1,8 @@
 package main
 
 import (
+	"Pigeon/user_API"
+	"Pigeon/utilities"
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
@@ -10,8 +12,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"user_API"
-	"utilities"
 )
 
 type Configuration struct {
