@@ -7,12 +7,16 @@ before_install:
     - go get -t -v ./pigeon/...
     - go get golang.org/x/tools/cmd/cover
     - go get github.com/mattn/goveralls
+    - go get github.com/axw/gocov/gocov
+    - go get github.com/modocache/gover
 
 install:
     - go install ./pigeon/...
 
 script:
-    - go test -v -covermode=count $GOPATH/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN ./pigeon/...
+    - go test -v -coverprofile=coverage.out ./...
+    - $GOPATH/bin/gover
+    - $GOPATH/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN ./...
 
 env:
   global:
