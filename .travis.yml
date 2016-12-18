@@ -10,4 +10,9 @@ install:
     - go install ./pigeon/...
 
 script:
-    - go test -race -coverprofile=coverage.txt -covermode=atomic ./pigeon/...
+    - go test -v -covermode=count -coverprofile=coverage.out -covermode=atomic $HOME/gopath/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN ./pigeon/...
+
+env:
+  global:
+    #Coveralls Token
+    secure: "PvXLh1jpihqpcv7F22U5FdcRjna9qtjdcQeFWJuVws8IohNHaB3kcd6uCRFtd7g4VQ5oFxv9hRc464xj2coih1sNKzeCE8X/kQQXz5P+tuhNOUm/18Be1F2KltcRiEjqqzECkVdXnKt2OzPu08c8YN6gggcpHHYZVwk3t2EDOIL4063j/SEx0bS9DuaCeCuiE6LDdtfUPRNoIHP17GGJMhPb0h4gv1N86EwKGh95m2cK9IGgOncEYZZdJ0yI1v0z/hnW4quuzlS9YHJOselChUFowEUSc7iAmqiYupHfpf6LXL5a8kttw5wTjLDYWDy0tB8W8N/Z7QLThwO+KZlZtfaZt2Or2Q9Ok1awZBW3BwAEr+g4dxHj6lzs/jKIXdImqS+gPd7CnmI8/0zqQcdMradonTwDMY6nu0+uSs0C3+MDyYZmfgpzaZ3ZKt10L1KrjW2EejVLH/hH5xj+R0v2nrOpdE96/MWYXTcSSwg2rNt3LMURHqbqirXVvMJbMlnh4hC+/04dpoX2TO4/lPVQ7M6e28MEsEOWpjtkwP3KUTHjLXYX1CM/ogdSjJJGyXRzQUeaRj3okzLtpE25RF6hwJEC3zEdVjbUXnCJjLGpkeYEq1SSN5BWtliEBqj6YlOpq0aUopelPi8RXJ7D0M6kf7c0OnZRzvbV9pdvRubQc08="
