@@ -1,4 +1,4 @@
-## Synopsis
+## Pigeon [![Build Status](https://travis-ci.org/RichardH92/Pigeon.svg?branch=master)](https://travis-ci.org/RichardH92/Pigeon)
 
 Pigeon is a microservice for sending template emails via a REST api. It runs on AWS and utilizes SES.
 
