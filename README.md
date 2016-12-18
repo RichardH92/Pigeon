@@ -1,4 +1,4 @@
-## Pigeon [![Build Status](https://travis-ci.org/RichardH92/Pigeon.svg?branch=master)](https://travis-ci.org/RichardH92/Pigeon)
+## Pigeon [![Build Status](https://travis-ci.org/RichardH92/Pigeon.svg?branch=master)](https://travis-ci.org/RichardH92/Pigeon) [![Coverage Status](https://coveralls.io/repos/github/RichardH92/Pigeon/badge.svg?branch=master)](https://coveralls.io/github/RichardH92/Pigeon?branch=master)
 
 Pigeon is a microservice for sending template emails via a REST api. It runs on AWS and utilizes SES.
 
